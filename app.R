@@ -32,6 +32,24 @@ obras_table <- readRDS("obras_table.RDS") %>% rename(Inicio = fechainicioanio, F
                                                      Dias_de_obra = duracionobrasdias, Objetivo = objetivogeneral, Tipo_de_proyecto = tipoproyecto, 
                                                      Distrito = nombredepto, Etapa = etapaobra, URL = url_perfil_obra) %>% 
     select(Distrito, Inicio, Fin, Obra, Monto, Sector, Ejecutor, Dias_de_obra, Objetivo, Tipo_de_proyecto, Etapa, URL)
+
+obras_table <- obras_table %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "25 De Mayo", replacement = "Veinticinco de Mayo")) %>% 
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "9 De Julio", replacement = "Nueve de Julio")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Bolívar", replacement = "Bolivar")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Carmen De Areco", replacement = "Carmen de Areco")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Coronel De Marina Leonardo Rosales", replacement = "Coronel Rosales")) %>% 
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Exaltación De La Cruz", replacement = "Exaltación de la Cruz")) %>% 
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "General Juan Madariaga", replacement = "General Madariaga")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "José M. Ezeiza", replacement = "Ezeiza")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Lomas De Zamora", replacement = "Lomas de Zamora")) %>% 
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Puán", replacement = "Puan")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "San Andrés De Giles", replacement = "San Andrés de Giles")) %>%
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "San Antonio De Areco", replacement = "San Antonio de Areco")) %>% 
+  mutate(nombredepto = str_replace_all(string = nombredepto, pattern = "Tres De Febrero", replacement = "Tres de Febrero")) 
+
+
+
 internet <- readRDS("internet.RDS") %>% filter(Provincia == "BUENOS AIRES")
 ### filtro rendimientos de hospitales 
 rendimiento18 <- rendimiento %>% filter(anio == "2018")
